@@ -1,0 +1,29 @@
+h1 {
+  color: blue;
+}
+
+h2 {
+  text-align: center;
+}
+
+#container {
+  width: 250px;
+  margin: 50px auto;
+}
+
+.list{
+  padding: 5px 0;
+}
+
+input {
+  margin-right: 20px;
+}
+
+input:checked {
+  color: rgb(214, 214, 214);
+  text-decoration: line-through;
+}
+
+.deleteBtn {
+  float: right;
+}
