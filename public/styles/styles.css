@@ -19,7 +19,7 @@ input {
   margin-right: 20px;
 }
 
-input:checked {
+:checked + label{
   color: rgb(214, 214, 214);
   text-decoration: line-through;
 }

@@ -81,7 +81,7 @@ function displayData(data){
   console.log(data.length);
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      $('#container').append('<div class="list" id="' + data[i].todo + '"><label><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked>' + data[i].todo + '</label><button class="deleteBtn">Delete</button</div>');
+      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label>' + data[i].todo + '</label><button class="deleteBtn">Delete</button</div>');
     } else {
       $('#container').append('<div class="list" id="' + data[i].todo + '"><label><input class="checkbox" type="checkbox" value="' + data[i].todo + '">' + data[i].todo + '</label><button class="deleteBtn">Delete</button</div>');
     }
