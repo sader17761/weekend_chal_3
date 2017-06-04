@@ -96,6 +96,38 @@ app.delete( '/todos', function( req, res ){
   res.send( 'YOU DID IT!' );
 });
 
+// delete all route
+app.delete( '/allTodos', function( req, res ){
+  console.log( 'We got a DELETE hit in /todos:', req.body );
+  pool.connect(function(err, connection, done){
+    if(err){
+      console.log('We have an error: ', err);
+      done();
+      res.send(400);
+    } else {
+      console.log('DELETE ALL, were connected to the DataBase.');
+      connection.query("DELETE FROM todoTable");
+    }
+  });
+  res.send( 'EVERYTHING WAS DELETED!' );
+});
+
+// delete all COMPLETED route
+app.delete( '/completeTodos', function( req, res ){
+  console.log( 'We got a DELETE hit in /todos:', req.body );
+  pool.connect(function(err, connection, done){
+    if(err){
+      console.log('We have an error: ', err);
+      done();
+      res.send(400);
+    } else {
+      console.log('DELETE ALL, were connected to the DataBase.');
+      connection.query("DELETE FROM todoTable WHERE completed = 'TRUE';");
+    }
+  });
+  res.send( 'EVERYTHING COMPLETED WAS DELETED!' );
+});
+
 // post update route
 app.post( '/update', function( req, res ){
   console.log( 'We got a UPDATE hit in /update:', req.body );
