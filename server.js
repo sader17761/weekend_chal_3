@@ -13,7 +13,7 @@ var config = {
   database: 'todoDB',
   host: 'localhost',
   port: 5432, // this is the default port for localhost postgres database
-  max: 10
+  max: 100
 };
 
 var pool = new pg.Pool(config);
@@ -49,7 +49,7 @@ app.get( '/todos', function( req, res ){
       // create our query string
       // tell db to run query
       // hold results in variable
-      var resultSet = connection.query( 'SELECT * from todoTable ORDER BY user_id ASC' );
+      var resultSet = connection.query( 'SELECT * from todoTable ORDER BY completed ASC' );
       resultSet.on( 'row', function( row ){
         // loop through result set and push each row into an array
         allTodos.push( row );

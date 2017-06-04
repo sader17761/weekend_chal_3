@@ -60,20 +60,23 @@ function createTodo(){
 
 // removes item from list and database
 function deleteTodo(){
-  console.log($(this).parent().attr("id"));
-  $(this).parent().remove();
-  var deleteItem = {
-    todoItem: $(this).parent().attr("id"),
-  }; // end of userInput object
-  $.ajax({
-    type: 'DELETE',
-    url: '/todos',
-    data: deleteItem,
-    success: function(response){
-      console.log('DELETE, we got a response from the server: ', response);
-      //getData();
-    } // end of success
-  });
+  var toDelete = confirm("Are you sure you want to delete this item?");
+  if(toDelete === true){
+    console.log($(this).parent().attr("id"));
+    $(this).parent().remove();
+    var deleteItem = {
+      todoItem: $(this).parent().attr("id"),
+    }; // end of userInput object
+    $.ajax({
+      type: 'DELETE',
+      url: '/todos',
+      data: deleteItem,
+      success: function(response){
+        console.log('DELETE, we got a response from the server: ', response);
+        //getData();
+      } // end of success
+    }); // end of ajax
+  } // end of if statement
 }
 
 function displayData(data){
@@ -81,9 +84,10 @@ function displayData(data){
   console.log(data.length);
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label>' + data[i].todo + '</label><button class="deleteBtn">Delete</button</div>');
+      $('#container').append('<div class="listChecked" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label class="todoText">' + data[i].todo + '</label><button class="deleteBtn">X</button></div>');
+      $('.listChecked').css('background-color', 'rgba(219, 219, 219, 0.6)');
     } else {
-      $('#container').append('<div class="list" id="' + data[i].todo + '"><label><input class="checkbox" type="checkbox" value="' + data[i].todo + '">' + data[i].todo + '</label><button class="deleteBtn">Delete</button</div>');
+      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"><label class="todoText">' + data[i].todo + '</label><button class="deleteBtn">X</button></div>');
     }
   } // end of 'for' loop
 } // end of displayData function
