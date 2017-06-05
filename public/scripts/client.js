@@ -118,12 +118,16 @@ function deleteAll() {
 
 function displayData(data){
   console.log('This is the data to be displayed: ', data);
+  // add todays date to todo...
+  var options = {year: 'numeric', month: 'long', day: 'numeric' };
+  var today  = new Date();
+  console.log();
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      $('#container').append('<div class="listChecked" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label class="todoText">' + data[i].todo + '</label><button class="deleteBtn">X</button></div>');
+      $('#container').append('<div class="listChecked" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label class="todoText">' + data[i].todo + '</label><button class="deleteBtnChecked">X</button></div>');
       $('.listChecked').css('background-color', 'rgba(219, 219, 219, 0.2)');
     } else {
-      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"><label class="todoText">' + data[i].todo + '</label><button class="deleteBtn">X</button></div>');
+      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"><label class="todoText">' + data[i].todo + '</label><p class="inlineDate">' + today.toLocaleDateString("en-US",options) + '</p><button class="deleteBtn">X</button></div>');
     }
   } // end of 'for' loop
 } // end of displayData function

@@ -105,6 +105,16 @@ h2 {
   box-shadow: 2px 1px 3px #202020;
 }
 
+.inlineDate {
+  float: right;
+  position: relative;
+  top: 10px;
+  right: 14px;
+  font-size: 12px;
+  display: inline-block;
+  color: rgb(120, 120, 179);
+}
+
 input[type='checkbox'] {
     -webkit-appearance:none;
     margin-top: 4px;
@@ -134,6 +144,7 @@ input[type='checkbox']:checked {
 :checked + label{
   color: rgb(65, 65, 99);
   text-decoration: line-through;
+  font-weight: lighter;
 }
 
 input[type=checkbox]:checked + div {
@@ -143,7 +154,24 @@ input[type=checkbox]:checked + div {
 .deleteBtn {
   float: right;
   position:relative;
-  left: 40px;
+  left: 106px;
+  top: -3px;
+  height: 54px;
+  width: 40px;
+  margin: 3px 0;
+  border: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 16px;
+  color: rgb(219, 219, 219);
+  background-color: rgb(120, 120, 179);
+  box-shadow: 2px 1px 3px #202020;
+}
+
+.deleteBtnChecked {
+  float: right;
+  position:relative;
+  left: 39px;
   top: -3px;
   height: 54px;
   width: 40px;
