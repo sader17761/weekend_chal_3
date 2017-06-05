@@ -154,7 +154,7 @@ input[type=checkbox]:checked + div {
 .deleteBtn {
   float: right;
   position:relative;
-  left: 106px;
+  left: 155px;
   top: -3px;
   height: 54px;
   width: 40px;
@@ -166,6 +166,14 @@ input[type=checkbox]:checked + div {
   color: rgb(219, 219, 219);
   background-color: rgb(120, 120, 179);
   box-shadow: 2px 1px 3px #202020;
+}
+
+.deleteBtn:hover {
+  background-color: rgb(94, 94, 147);
+}
+
+.deleteBtn:focus {
+  outline: none;
 }
 
 .deleteBtnChecked {
@@ -185,11 +193,11 @@ input[type=checkbox]:checked + div {
   box-shadow: 2px 1px 3px #202020;
 }
 
-.deleteBtn:hover {
+.deleteBtnChecked:hover {
   background-color: rgb(94, 94, 147);
 }
 
-.deleteBtn:focus {
+.deleteBtnChecked:focus {
   outline: none;
 }
 
@@ -230,4 +238,5 @@ footer {
    text-align: center;
    background: rgb(65, 65, 99);
    color: rgb(45, 45, 70);
+   index: 99;
 }

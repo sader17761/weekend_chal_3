@@ -6,6 +6,7 @@ $(document).ready(function(){
   // button listeners
   $('#submitBtn').on('click', createTodo);
   $('#container').on('click', '.deleteBtn', deleteTodo);
+  $('#container').on('click', '.deleteBtnChecked', deleteTodo);
   $('#container').on('click', '.checkbox', completedTodo);
   $('#allCompletedBtn').on('click', checkCompleted);
   $('#allBtn').on('click', deleteAll);
@@ -119,17 +120,29 @@ function deleteAll() {
 function displayData(data){
   console.log('This is the data to be displayed: ', data);
   // add todays date to todo...
-  var options = {year: 'numeric', month: 'long', day: 'numeric' };
-  var today  = new Date();
-  console.log();
+  var date  = new Date();
+  var options = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+  $('#container').empty();
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      $('#container').append('<div class="listChecked" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked><label class="todoText">' + data[i].todo + '</label><button class="deleteBtnChecked">X</button></div>');
+      var completedDiv = '<div class="listChecked" id="' + data[i].todo + '">';
+      completedDiv += '<input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked>';
+      completedDiv += '<label class="todoText">' + data[i].todo + '</label>';
+      completedDiv += '<button class="deleteBtnChecked">X</button>';
+      completedDiv += '</div>';
+      $('#container').append(completedDiv);
       $('.listChecked').css('background-color', 'rgba(219, 219, 219, 0.2)');
     } else {
-      $('#container').append('<div class="list" id="' + data[i].todo + '"><input class="checkbox" type="checkbox" value="' + data[i].todo + '"><label class="todoText">' + data[i].todo + '</label><p class="inlineDate">' + today.toLocaleDateString("en-US",options) + '</p><button class="deleteBtn">X</button></div>');
-    }
-  } // end of 'for' loop
+      var notCompletedDiv = '<div class="list" id="' + data[i].todo + '">';
+      notCompletedDiv += '<input class="checkbox" type="checkbox" value="' + data[i].todo + '">';
+      notCompletedDiv += '<label class="todoText">' + data[i].todo + '</label>';
+      notCompletedDiv += '<p class="inlineDate">' + date.toLocaleDateString('en-US', options) + '</p>';
+      notCompletedDiv += '<button class="deleteBtn">X</button>';
+      notCompletedDiv += '</div>';
+      $('#container').append(notCompletedDiv);
+    } // end of if statement
+  } // end of for loop
 } // end of displayData function
 
 function getData(){
