@@ -5,6 +5,8 @@ body {
 }
 
 
+
+
 h1 {
   font-size: 20px;
   font-weight: lighter;
@@ -77,129 +79,12 @@ h2 {
   background-color: rgb(94, 94, 147);
 }
 
-/*
-#submitBtn:active {
-  background-color: rgb(72, 72, 112);
-}*/
 
-.list{
-  color: rgb(65, 65, 99);
-  float:left;
-  margin: 2px 0;
-  width: 450px;
-  height: 54px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  background-color: rgb(245, 245, 245);
-  box-shadow: 2px 1px 3px #202020;
-}
 
-.listChecked{
-  float: left;
-  margin: 2px 0;
-  width: 450px;
-  height: 54px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  background-color: rgb(245, 245, 245);
-  box-shadow: 2px 1px 3px #202020;
-}
 
-.inlineDate {
-  float: right;
-  position: relative;
-  top: 10px;
-  right: 14px;
-  font-size: 12px;
-  display: inline-block;
-  color: rgb(120, 120, 179);
-}
 
-input[type='checkbox'] {
-    -webkit-appearance:none;
-    margin-top: 4px;
-    width: 20px;
-    height: 20px;
-    background:white;
-    border-radius: 3px;
-    border:1px solid #555;
-}
 
-input[type='checkbox']:checked {
-    background: rgb(65, 65, 99);
-}
 
-.checkbox {
-  margin: 0 15px;
-  position: relative;
-  top: 13px;
-}
-
-.todoText {
-  font-size: 20px;
-  position: relative;
-  top: 11px;
-}
-
-:checked + label{
-  color: rgb(65, 65, 99);
-  text-decoration: line-through;
-  font-weight: lighter;
-}
-
-input[type=checkbox]:checked + div {
-    background-color: blue;
-}
-
-.deleteBtn {
-  float: right;
-  position:relative;
-  left: 155px;
-  top: -3px;
-  height: 54px;
-  width: 40px;
-  margin: 3px 0;
-  border: 0;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  font-size: 16px;
-  color: rgb(219, 219, 219);
-  background-color: rgb(120, 120, 179);
-  box-shadow: 2px 1px 3px #202020;
-}
-
-.deleteBtn:hover {
-  background-color: rgb(94, 94, 147);
-}
-
-.deleteBtn:focus {
-  outline: none;
-}
-
-.deleteBtnChecked {
-  float: right;
-  position:relative;
-  left: 39px;
-  top: -3px;
-  height: 54px;
-  width: 40px;
-  margin: 3px 0;
-  border: 0;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  font-size: 16px;
-  color: rgb(219, 219, 219);
-  background-color: rgb(120, 120, 179);
-  box-shadow: 2px 1px 3px #202020;
-}
-
-.deleteBtnChecked:hover {
-  background-color: rgb(94, 94, 147);
-}
-
-.deleteBtnChecked:focus {
-  outline: none;
-}
 
 #buttonDiv {
   width: 100%;
@@ -238,5 +123,104 @@ footer {
    text-align: center;
    background: rgb(65, 65, 99);
    color: rgb(45, 45, 70);
-   index: 99;
+}
+
+
+
+
+
+
+/*-- Example Todo Div --*/
+.todoDiv {
+  margin-bottom: 4px;
+  width: 490px;
+  height: 54px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 2px 1px 3px #202020;
+}
+
+.todoDiv p {
+  color: rgb(65, 65, 99);
+}
+
+.todoDivComplete {
+  margin-bottom: 4px;
+  width: 490px;
+  height: 54px;
+  background-color: rgb(49, 49, 78);
+  box-shadow: 2px 1px 3px #202020;
+}
+
+.todoDivComplete p {
+  text-decoration: line-through;
+  font-weight: lighter;
+  color: rgb(65, 65, 99);
+}
+
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;
+    background:white;
+    border-radius: 3px;
+    border:1px solid #555;
+}
+
+input[type='checkbox']:checked {
+    background: rgb(65, 65, 99);
+}
+
+#checkboxDiv {
+  display: inline-block;
+  float: left;
+  width: 54px;
+  height: 54px;
+}
+
+#todoCheckbox{
+  margin:17px 17px;
+}
+
+#textDiv {
+  display: inline-block;
+  float: left;
+  margin: 0;
+  width: 290px;
+  height: 54px;
+}
+
+#textDiv p {
+  font-size: 20px;
+  position: relative;
+  top: -5px;
+}
+
+#dateDiv {
+  display: inline-block;
+  float: left;
+  margin: 0;
+  width: 92px;
+  height: 54px;
+}
+
+#dateDiv p {
+  font-size: 12px;
+  text-align: right;
+  position: relative;
+  top: 8px;
+  padding-right: 10px;
+  color: rgb(130, 130, 191);
+}
+
+#btnDiv {
+  display: inline-block;
+  font-size: 16px;
+  /*float: left;*/
+  margin:0;
+  width: 54px;
+  height: 54px;
+  border: none;
+  color: rgb(219, 219, 219);
+  background-color: rgb(120, 120, 179);
 }

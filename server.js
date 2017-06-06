@@ -67,6 +67,14 @@ app.get( '/todos', function( req, res ){
 // post route
 app.post( '/todos', function( req, res ){
   console.log( 'We got a post hit in /todos:', req.body );
+  // collect date received and convert the format for the database...
+  var date = req.body.todoDate;
+  function convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+    return [ date.getFullYear(), mnth, day ].join("-");
+}
   pool.connect(function(err, connection, done){
     if(err){
       console.log('We have an error: ', err);
@@ -74,7 +82,7 @@ app.post( '/todos', function( req, res ){
       res.send(400);
     } else {
       console.log('WOO HOO, were connected to the DataBase.');
-      connection.query("INSERT INTO todoTable (todo, completed) VALUES ($1, $2)", [req.body.todoItem, req.body.todoComplete]);
+      connection.query("INSERT INTO todoTable (todo, completed, date) VALUES ($1, $2, $3)", [req.body.todoItem, req.body.todoComplete, convert(date)]);
     }
   });
   res.send( 'YOU DID IT!' );

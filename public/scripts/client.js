@@ -26,6 +26,7 @@ function completedTodo(){
   var completedObject = {};
 
   if($( this ).prop( "checked" )){
+    console.log('checkbox checked');
     completedObject = {
       todoItem: $(this).attr('value'),
       isCompleted: true
@@ -42,7 +43,7 @@ function completedTodo(){
     url: '/update',
     data: completedObject,
     success: function(response){
-      $("#container").children().remove();
+      $("#container").empty();
       getData();
     }
   });
@@ -50,13 +51,15 @@ function completedTodo(){
 
 function createTodo(){
   console.log('Submit button was clicked.');
+  var date  = new Date();
     if($('#todoInput').val() === '' || $('#todoInput').val() === undefined){
         alert('Please enter a todo.');
       } else {
       // this is were we get the users input
       var userInput = {
         todoItem: $('#todoInput').val(),
-        todoComplete: false
+        todoComplete: false,
+        todoDate: date
       }; // end of userInput object
       inputToServer(userInput);
       // clear the userInput
@@ -118,28 +121,35 @@ function deleteAll() {
 }
 
 function displayData(data){
-  console.log('This is the data to be displayed: ', data);
-  // add todays date to todo...
-  var date  = new Date();
-  var options = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  var monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   $('#container').empty();
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      var completedDiv = '<div class="listChecked" id="' + data[i].todo + '">';
-      completedDiv += '<input class="checkbox" type="checkbox" value="' + data[i].todo + '"checked>';
-      completedDiv += '<label class="todoText">' + data[i].todo + '</label>';
-      completedDiv += '<button class="deleteBtnChecked">X</button>';
+      var completedDiv = '<div class="todoDivComplete" id="' + data[i].todo + '">';
+      completedDiv += '<div id="checkboxDiv"><input id="todoCheckbox" class="checkbox" type="checkbox" value="' + data[i].todo + '" checked></div>';
+      completedDiv += '<div id="textDiv"><p>' + data[i].todo + '</p></div>';
+      completedDiv += '<div id="dateDiv"><p></p></div>';
+      completedDiv += '<button id="btnDiv" class="deleteBtn">X</button>';
       completedDiv += '</div>';
       $('#container').append(completedDiv);
-      $('.listChecked').css('background-color', 'rgba(219, 219, 219, 0.2)');
+      $('.todoDivComplete').addClass('complete');
     } else {
-      var notCompletedDiv = '<div class="list" id="' + data[i].todo + '">';
-      notCompletedDiv += '<input class="checkbox" type="checkbox" value="' + data[i].todo + '">';
-      notCompletedDiv += '<label class="todoText">' + data[i].todo + '</label>';
-      notCompletedDiv += '<p class="inlineDate">' + date.toLocaleDateString('en-US', options) + '</p>';
-      notCompletedDiv += '<button class="deleteBtn">X</button>';
+      //add date
+      var date = data[i].date;
+      var newDate = new Date(date);
+      date = newDate.getDate();
+      year = newDate.getFullYear();
+      month = newDate.getMonth();
+      var dateString = monthArray[month] + ' ' + date + ', ' + year;
+
+      var notCompletedDiv = '<div class="todoDiv" id="' + data[i].todo + '">';
+      notCompletedDiv += '<div id="checkboxDiv"><input id="todoCheckbox" class="checkbox" type="checkbox" value="' + data[i].todo + '"></div>';
+      notCompletedDiv += '<div id="textDiv"><p>' + data[i].todo + '</p></div>';
+      notCompletedDiv += '<div id="dateDiv"><p>' + dateString + '</p></div>';
+      notCompletedDiv += '<button id="btnDiv" class="deleteBtn">X</button>';
       notCompletedDiv += '</div>';
+
       $('#container').append(notCompletedDiv);
     } // end of if statement
   } // end of for loop
@@ -163,7 +173,7 @@ function getData(){
 } // end of getData function
 
 function inputToServer(input){
-  console.log(input);
+  console.log('This is our Input: ', input);
   // send userInput to the server
   $.ajax({
     type: 'POST',
