@@ -73,10 +73,10 @@ function createTodo(){
 function deleteTodo(){
   var toDelete = confirm("Are you sure you want to delete this item?");
   if(toDelete === true){
-    console.log($(this).parent().attr("id"));
+    console.log('This is the id to Delete: ', $(this).parent().attr("data-id"));
     $(this).parent().remove();
     var deleteItem = {
-      todoItem: $(this).parent().attr("id"),
+      todoItem: $(this).parent().attr("data-id"),
     }; // end of userInput object
     $.ajax({
       type: 'DELETE',
@@ -126,7 +126,7 @@ function displayData(data){
   $('#container').empty();
   for (var i = 0; i < data.length; i++) {
     if(data[i].completed === true){
-      var completedDiv = '<div class="todoDivComplete" id="' + data[i].todo + '">';
+      var completedDiv = '<div class="todoDivComplete" id="' + data[i].todo + '" data-id="' + data[i].user_id + '">';
       completedDiv += '<div id="checkboxDiv"><input id="todoCheckbox" class="checkbox" type="checkbox" value="' + data[i].todo + '" checked></div>';
       completedDiv += '<div id="textDiv"><p>' + data[i].todo + '</p></div>';
       completedDiv += '<div id="dateDiv"><p></p></div>';
@@ -143,7 +143,7 @@ function displayData(data){
       month = newDate.getMonth();
       var dateString = monthArray[month] + ' ' + date + ', ' + year;
 
-      var notCompletedDiv = '<div class="todoDiv" id="' + data[i].todo + '">';
+      var notCompletedDiv = '<div class="todoDiv" id="' + data[i].todo + '" data-id="' + data[i].user_id + '">';
       notCompletedDiv += '<div id="checkboxDiv"><input id="todoCheckbox" class="checkbox" type="checkbox" value="' + data[i].todo + '"></div>';
       notCompletedDiv += '<div id="textDiv"><p>' + data[i].todo + '</p></div>';
       notCompletedDiv += '<div id="dateDiv"><p>' + dateString + '</p></div>';

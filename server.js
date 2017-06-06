@@ -58,6 +58,7 @@ app.get( '/todos', function( req, res ){
         // close connection
         done();
         // send back data
+        console.log(allTodos);
         res.send( allTodos );
       });
     } // end no error
@@ -98,7 +99,7 @@ app.delete( '/todos', function( req, res ){
       res.send(400);
     } else {
       console.log('WOO HOO, were connected to the DataBase.');
-      connection.query("DELETE FROM todoTable WHERE todo = '" + req.body.todoItem + "';");
+      connection.query("DELETE FROM todoTable WHERE user_id = '" + req.body.todoItem + "';");
     }
   });
   res.send( 'YOU DID IT!' );
