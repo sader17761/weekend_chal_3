@@ -4,9 +4,6 @@ body {
   overflow: auto;
 }
 
-
-
-
 h1 {
   font-size: 20px;
   font-weight: lighter;
@@ -78,13 +75,6 @@ h2 {
 #submitBtn:hover {
   background-color: rgb(94, 94, 147);
 }
-
-
-
-
-
-
-
 
 #buttonDiv {
   width: 100%;
@@ -216,11 +206,19 @@ input[type='checkbox']:checked {
 #btnDiv {
   display: inline-block;
   font-size: 16px;
-  /*float: left;*/
+  float: left;
   margin:0;
   width: 54px;
   height: 54px;
   border: none;
   color: rgb(219, 219, 219);
   background-color: rgb(120, 120, 179);
+}
+
+#btnDiv:focus {
+  outline: none;
+}
+
+#btnDiv:hover {
+  background-color: rgb(94, 94, 147);
 }

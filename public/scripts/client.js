@@ -91,7 +91,7 @@ function deleteTodo(){
 }
 
 function deleteAllCompleted(todosComplete) {
-  var toDelete = confirm("Are you sure you want to delete all completed todos?");
+  var toDelete = confirm("Are you sure you want to delete ALL COMPLETED todos?");
   if(toDelete === true){
     $.ajax({
       type: 'DELETE',
@@ -106,7 +106,7 @@ function deleteAllCompleted(todosComplete) {
 }
 
 function deleteAll() {
-  var toDelete = confirm("Are you sure you want to delete all todos?");
+  var toDelete = confirm("Are you sure you want to delete ALL todos?");
   if(toDelete === true){
     $.ajax({
       type: 'DELETE',
